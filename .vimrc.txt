@@ -1,0 +1,159 @@
+" konfigurasi require dari vundle
+"call vundle#config#require(g:bundles)
+
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+
+" daftar plugin yang di install
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'mattn/emmet-vim'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'chriskempson/base16-vim'
+Plugin 'shougo/neocomplcache.vim'
+Plugin 'valloric/youcompleteme'
+Plugin 'scrooloose/syntastic'
+Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'jbgutierrez/vim-babel'
+Plugin 'mattn/webapi-vim'
+Plugin 'gorodinskiy/vim-coloresque'
+Plugin 'lilydjwg/colorizer'
+Plugin 'dikiaap/minimalist'
+Plugin 'spf13/vim-autoclose'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'prettier/vim-prettier'
+Plugin 'dracula/vim'
+Plugin 'junegunn/seoul256.vim'
+
+
+
+" konfigurasi require dari vundle
+call vundle#end()
+filetype plugin indent on
+
+" dokumentasi vundle
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" konfigurasi workspace vim
+syntax enable
+" color dracula
+" colorscheme dracula
+set number
+set tabstop=2
+set t_Co=256
+set laststatus=2
+set hlsearch
+set backspace=indent,eol,start
+set grepprg=ag
+
+" konfigurasang_format#code_style='google' eslint syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+
+
+" konfigurasi plugin yang telah terinstall
+let g:solarized_termcolors = 256
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:neocomplcache_enable_at_startup = 1
+let g:jsx_ext_required = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:20,results:20'
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:clang_format#code_style='google'
+let g:clang_format#command = "~/.vim/bundle/vim-clang-format"
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+set conceallevel=1
+let g:used_javascript_libs = 'underscore,react,chai,vue,backbone, jquery'
+let g:ackprg = 'ag --vimgrep'
+let g:grep_cmd_opts = '--line-numbers --noheading'
+let g:prettier#exec_cmd_path = "~/.vim/bundle/vim-prettier"
+let g:prettier#autoformat = 0
+let g:prettier#exec_cmd_async = 1
+let g:prettier#config#parser = 'babylon'
+let g:prettier#config#trailing_comma = 'none'
+autocmd BufWritePre *.php,*.html,*.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
+
+" Unified color scheme (default: dark)
+" colo seoul256
+
+" Light color scheme
+" colo seoul256-light
+
+" Switch
+" set background=dark
+" set background=light
+
+
+
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'javascript' : 1,
+    \ 'jsx' : 1,
+    \ 'babel' : 1,
+    \}
+
+" config emmet
+let g:user_emmet_settings = {
+  \    'indentation' : '  '
+  \}
+  
+  
+" Mapping myvimrc
+nmap <Leader>c :e $MYVIMRC<cr>
+
+" Mapping for close quick fix vim
+nmap <C-x> :ccl<cr>
+
+" Mapping line buble
+nmap <C-k> [e
+nmap <C-j> ]e
+
+" Mapping for prettier
+nmap <Leader>a :Prettier<cr>
+  
+" Mapping for search
+nmap <Leader><space> :nohlsearch<cr>
+
+" Mapping for ctrlp + search Ack
+nmap <leader>b :CtrlPBuffer<CR>
+nmap <S-f> :CtrlP<CR>
+nmap <S-a> :Ack -i -l 
+
+" Mapping for buffer
+nmap <Leader>f :bn<cr>
+nmap <Leader>d :bp<cr>
+nmap <Leader>s :bd<cr>
+
+" Mapping for NERDTree
+nmap <leader>p :NERDTreeToggle<CR>
+nmap <leader>o :NERDTreeFind<CR>
+" nmap <leader>p :NERDTreeFind<CR>
